@@ -1,13 +1,22 @@
+int aSizex = 50;
+int aSizey = 50;
+float bSizex = 25;
+float bSizey = 25;
+Bacteria [] fleas;
+void setup()   
 
- 
- void setup()   
  {     
- 	size(1000,1000); 
+ 	size(600,600); 
+ 	background (0);
+ 	fleas = new Bacteria[10];
+ 	for(int i = 0; i < 10; i++)
+	{
+	   fleas[i] = new Bacteria();
+	}
  }   
  void draw()   
  {    
-    fleas = new Bacteria;
- 	ellipse(300,300,500,500);
+    dinnertime();
  	for(int i = 0; i < 10; i++)	
  	{	
  		fleas[i].run();
@@ -27,33 +36,59 @@
  	{
 	 	if (myX < mouseX)
 	 	{
-	 		myX = myX + (int)(Math.random()*5)-1;
+	 		myX = myX + (int)(Math.random()*10)+10;
 	 	}
 	 	else if (myX> mouseX)
 	 	{
-	 		myX = myX + (int)(Math.random()*5)-3;
+	 		myX = myX + (int)(Math.random()*10)-10;
 	 	}
 	 	else 
 	 	{
-	 		myX =myX + (int)(Math.random()*5)-2;
+	 		myX =myX + (int)(Math.random()*10);
 	 		
 	 	}
 	 	if (myY < mouseY)
 	 	{
-	 		myY = myY + (int)(Math.random()*5)-1;
+	 		myY = myY + (int)(Math.random()*10)+10;
 	 	}
 	 	else if (myY> mouseY)
 	 	{
-	 		myY = myY + (int)(Math.random()*5)-3;
+	 		myY = myY + (int)(Math.random()*10)-10;
 	 	}
-	 	else (myY> mouseY)
+	 	else
 	 	{
-	 		myY = myY + (int)(Math.random()*5)-2;
+	 		myY = myY + (int)(Math.random()*10);
 	 	}
 	}
 	void show()
  	{
- 		 		
+ 		fill(myColor);
+ 		ellipse(myX,myY,bSizex,bSizey);
+ 		if (mouseX == myX && mouseY == myY)
+ 		{
+ 			aSizex = aSizex - 1;
+ 			aSizey = aSizey - 1;
+ 			bSizex = bSizex + .1;
+ 			bSizey = bSizey + .1;
+ 		}
+ 		if (aSizex == 0 && aSizey == 0)
+ 		{
+ 			aSizex = 50;
+ 			aSizey = 50;
+ 		}	
  	}
  	
  }    
+
+  void dinnertime()
+ {
+ 	fill(0);
+ 	rect(mouseX,mouseY,aSizex,aSizey);
+ }    
+
+void mousePressed()
+{
+	for(int i = 0; i < 10; i++)
+
+	fleas[i] = new Bacteria();
+}
